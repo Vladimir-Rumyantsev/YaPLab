@@ -15,10 +15,7 @@ class FirstGradeStudent(Student):
         self.information = information
 
     def __str__(self):
-        return (f'Имя ученика: {self.last_name}'
-                f'\nФамилия ученика: {self.first_name}'
-                f'\nКласс ученика: {self.grade}'
-                f'\nСкорость чтения: {self.information}')
+        return (f'{self.last_name} | {self.first_name} | {self.grade} | Скорость чтения — {self.information}')
 
 
 class SecondOrThirdGradeStudent(Student):
@@ -27,10 +24,8 @@ class SecondOrThirdGradeStudent(Student):
         self.information = information
 
     def __str__(self):
-        return (f'Имя ученика: {self.last_name}'
-                f'\nФамилия ученика: {self.first_name}'
-                f'\nКласс ученика: {self.grade}'
-                f'\nДанные итоговой школьной контрольной по математике: {self.information}')
+        return (f'{self.last_name} | {self.first_name} | {self.grade} | '
+                f'Данные итоговой школьной контрольной по математике — {self.information}')
 
 
 class FourthGradeStudent(Student):
@@ -39,10 +34,8 @@ class FourthGradeStudent(Student):
         self.information = information
 
     def __str__(self):
-        return (f'Имя ученика: {self.last_name}'
-                f'\nФамилия ученика: {self.first_name}'
-                f'\nКласс ученика: {self.grade}'
-                f'\nБаллы итоговой аттестации: {self.information}')
+        return (f'{self.last_name} | {self.first_name} | {self.grade} | '
+                f'Баллы итоговой аттестации — {self.information}')
 
 
 def student_data(n):
@@ -124,5 +117,6 @@ for i in range(N):
 write_database()
 database = []
 read_database()
+print('\nФамилия ученика | Имя ученика | Класс ученика | Информация')
 for i in range(len(database)):
-    print(f'\n{i+1}. {str(database[i])}')
+    print(f'{str(database[i])}')
