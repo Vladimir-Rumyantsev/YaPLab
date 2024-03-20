@@ -1,37 +1,35 @@
-# Ещё не готово
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
 
-# class Node:
-#     def __init__(self, data):
-#         self.data = data
-#         self.next = None
+class Queue:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def enqueue(self, data):
+        new_node = Node(data)
+        if self.tail is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
 
 
-# class LinkedList:
-#     def __init__(self):
-#         self.head = None
+numbers = list(map(int, input(f'\nВведите через пробел набор из 10 чисел: ').split()))
+odd_queue = Queue()
+even_queue = Queue()
 
-#     def find_first_multiple_of_4(self):
-#         current = self.head
-#         while current:
-#             if current.data % 4 == 0:
-#                 return current
-#             current = current.next
+for i in range(len(numbers)):
+    if i % 2 == 1:
+        even_queue.enqueue(numbers[i])
+    else:
+        odd_queue.enqueue(numbers[i])
 
-
-# llist = LinkedList()
-# llist.head = Node(1)
-# second = Node(2)
-# third = Node(4)
-# fourth = Node(5)
-# fifth = Node(8)
-# sixth = Node(9)
-
-# llist.head.next = second
-# second.next = third
-# third.next = fourth
-# fourth.next = fifth
-# fifth.next = sixth
-
-# result = llist.find_first_multiple_of_4()
-# print(result.data)
+print(f'\n(ссылка: odd_queue.head.data) Начало нечётной очереди: {odd_queue.head.data}'
+      f'\n(ссылка: odd_queue.tail.data) Конец нечётной очереди: {odd_queue.tail.data}\n'
+      f'\n(ссылка: even_queue.head.data) Начало чётной очереди: {even_queue.head.data}'
+      f'\n(ссылка: even_queue.tail.data) Конец нечётной очереди: {even_queue.tail.data}')
