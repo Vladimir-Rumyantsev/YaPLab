@@ -1,37 +1,50 @@
-# Ещё не готово
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
 
-# class Node:
-#     def __init__(self, data):
-#         self.data = data
-#         self.next = None
+class IntStack:
+    def __init__(self):
+        self.head = None
+
+    def insert_a_value(self, value):
+        current = self.head
+        i = 0
+        while current:
+            i += 1
+            if i % 3 == 0:
+                x = Node(value)
+                x.next = current.next
+                current.next = x
+                current = current.next
+            current = current.next
+
+    def display_queue(self):
+        current = self.head
+        last = None
+        while current:
+            last = current.data
+            print(last)
+            current = current.next
+        return last
 
 
-# class LinkedList:
-#     def __init__(self):
-#         self.head = None
+numbers = list(map(int, input(f'\nВведите через пробел набор чисел для списка: ').split()))
+llist = IntStack()
+x = None
+if len(numbers) >= 1:
+    for i in range(len(numbers) - 1, -1, -1):
+        y = x
+        x = Node(numbers[i])
+        x.next = y
+llist.head = x
 
-#     def find_first_multiple_of_4(self):
-#         current = self.head
-#         while current:
-#             if current.data % 4 == 0:
-#                 return current
-#             current = current.next
-
-
-# llist = LinkedList()
-# llist.head = Node(1)
-# second = Node(2)
-# third = Node(4)
-# fourth = Node(5)
-# fifth = Node(8)
-# sixth = Node(9)
-
-# llist.head.next = second
-# second.next = third
-# third.next = fourth
-# fourth.next = fifth
-# fifth.next = sixth
-
-# result = llist.find_first_multiple_of_4()
-# print(result.data)
+print('\nЛист сейчас:')
+last = llist.display_queue()
+print(f'\nПоследний элемент списка сейчас: {last}')
+m = int(input('\nВведите значение M: '))
+llist.insert_a_value(m)
+print('\nЛист после изменений:')
+last = llist.display_queue()
+print(f'\nПоследний элемент списка после изменений: {last}')
