@@ -1,3 +1,5 @@
+# Приняли на 0,5 баллов
+
 class Node:
     def __init__(self, data):
         self.data = data
