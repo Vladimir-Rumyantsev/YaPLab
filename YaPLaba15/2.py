@@ -29,7 +29,7 @@ for i in range(len(numbers)):
     else:
         odd_queue.enqueue(numbers[i])
 
-print(f'\n(ссылка: odd_queue.head.data) Начало нечётной очереди: {odd_queue.head.data}'
-      f'\n(ссылка: odd_queue.tail.data) Конец нечётной очереди: {odd_queue.tail.data}\n'
-      f'\n(ссылка: even_queue.head.data) Начало чётной очереди: {even_queue.head.data}'
-      f'\n(ссылка: even_queue.tail.data) Конец нечётной очереди: {even_queue.tail.data}')
+print(f'\n(ссылка: {odd_queue.head}) Начало нечётной очереди: {odd_queue.head.data}'
+      f'\n(ссылка: {odd_queue.tail}) Конец нечётной очереди: {odd_queue.tail.data}\n'
+      f'\n(ссылка: {even_queue.head}) Начало чётной очереди: {even_queue.head.data}'
+      f'\n(ссылка: {even_queue.tail}) Конец нечётной очереди: {even_queue.tail.data}')
