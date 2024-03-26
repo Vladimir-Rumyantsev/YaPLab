@@ -1,5 +1,3 @@
-# Приняли на 0,5 баллов
-
 class Node:
     def __init__(self, data):
         self.data = data
@@ -9,6 +7,17 @@ class Node:
 class IntStack:
     def __init__(self):
         self.head = None
+
+    def push(self, new_data):
+
+        current = self.head
+        if current is None:
+            self.head = Node(new_data)
+        else:
+            while current.next:
+                current = current.next
+            current.next = Node(new_data)
+
 
     def insert_a_value(self, value):
         new_node = Node(value)
@@ -24,31 +33,41 @@ class IntStack:
 
     def display_queue(self):
         current = self.head
+        if not current:
+            return '[]'
         line = ''
         while current:
-            line = f'{line} {current.data}'
+            line = f'{line}, {current.data}'
             current = current.next
-        if self.head:
-            return line, self.head.data
-        return None, None
+        return f'[{line[2:]}]'
+
+
+    def copy(self):
+        new_stack = IntStack()
+
+        if not self.head:
+            return new_stack
+
+        current = self.head
+        while current:
+            new_stack.push(current.data)
+            current = current.next
+
+        return new_stack
 
 
 numbers = list(map(int, input(f'\nВведите через пробел набор чисел для списка: ').split()))
 P1 = IntStack()
-x = None
-if len(numbers) >= 1:
-    for i in range(len(numbers) - 1, -1, -1):
-        y = x
-        x = Node(numbers[i])
-        x.next = y
-P1.head = x
-P2 = P1
+for i in numbers:
+    P1.push(i)
 
-line, first = P2.display_queue()
-print(f'\nКопия списка сейчас:\n{line}')
-print(f'\nПервый элемент копии списка сейчас: {first}')
+P2 = P1.copy()
+print(f'\nСписок P1: {P1.display_queue()}'
+      f'\nПервый элемент: {P1.head}'
+      f'\n\nСписок P2: {P2.display_queue()}'
+      f'\nПервый элемент: {P2.head}')
+
 m = int(input('\nВведите значение M: '))
 P2.insert_a_value(m)
-line, first = P2.display_queue()
-print(f'\nКопия списка после изменений:\n{line}')
-print(f'\nПервый элемент копии списка после изменений: {first}')
+print(f'\nСписок P2 после изменений: {P2.display_queue()}'
+      f'\nПервый элемент: {P2.head}')
