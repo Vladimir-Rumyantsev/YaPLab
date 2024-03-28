@@ -59,8 +59,10 @@ class IntListB:
         return self.current.data
 
 
-    def isBarrier(self):
-        return self.current is self.barrier
+    def isBarrier(self, current=None):
+        if current is None:
+            current = self.current
+        return current is self.barrier
 
 
     def getBarrier(self, current=None):
@@ -73,26 +75,31 @@ class IntListB:
 
         line = ''
         current = self.last
+        i = 0
 
-        while current is not self.barrier:
+        while (current is not self.barrier) and (current is not None):
             if current.data % 2 == 0:
+                i += 1
                 line = f'{line}, {current.data}'
             current = current.prev
 
-        return f'[{line[2:]}]'
+        return i, f'[{line[2:]}]'
 
 
 numbers = list(map(int, input(f'\nВведите через пробел набор чисел для списка: ').split()))
 bar = int(input('Введите номер элемента, который будет барьерным (считать от 1): ')) - 1
-# cur = int(input('Введите номер текущего элемента (считать от 1): ')) - 1
+
+if bar >= len(numbers):
+    bar = len(numbers) - 1
 
 dll = IntListB()
 for i in range(len(numbers)):
     if i == bar:
         dll.add(numbers[i], True)
-    # elif i == cur:
-    #     dll.add(numbers[i], False, True)
     else:
         dll.add(numbers[i])
 
-print(f'\nВсе чётные от конца до барьера: {dll.print_even_numbers()}')
+i, line = dll.print_even_numbers()
+
+print(f'\nВсе чётные от конца до барьера: {line}'
+      f'\nКоличество: {i}')
