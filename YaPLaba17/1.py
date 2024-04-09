@@ -2,7 +2,7 @@ import random
 import sys
 
 
-number_of_numbers_to_play = 2018
+number_of_numbers_to_play = 2018   # Натуральное число (количество чисел в игре)
 
 
 class Player:
@@ -108,7 +108,7 @@ if __name__ == '__main__':
     while True:
 
         if len(database) >= number_of_numbers_to_play:
-            print('Победа компьютера через окончание доступных вам ходов!')
+            print('\nПобеда компьютера через окончание доступных вам ходов!')
             sys.exit()
 
         x = int(input(f'\nВведите число от 1 до {number_of_numbers_to_play} (включительно), '
@@ -127,7 +127,7 @@ if __name__ == '__main__':
             sys.exit()
 
         if len(database) >= number_of_numbers_to_play:
-            print('Вы победили через окончание доступных компьютеру ходов!')
+            print('\nВы победили через окончание доступных компьютеру ходов!')
             sys.exit()
 
         print(f'Ход компьютера: {choosing_a_number_by_computer(difficulty)}')
