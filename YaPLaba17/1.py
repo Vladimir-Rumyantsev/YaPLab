@@ -26,7 +26,11 @@ class Vasya(Player):
 
 def choosing_a_number_by_computer(diff=3):
     if diff == 1:
-        high_difficulty = False
+        rand = random.randint(1, 2)
+        if rand == 1:
+            high_difficulty = False
+        else:
+            high_difficulty = True
     elif diff == 2:
         rand = random.randint(1, 4)
         if rand == 1:
