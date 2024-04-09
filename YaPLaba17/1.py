@@ -24,7 +24,18 @@ class Vasya(Player):
         super().__init__()
 
 
-def choosing_a_number_by_computer(high_difficulty=True):
+def choosing_a_number_by_computer(diff=3):
+    if diff == 1:
+        high_difficulty = False
+    elif diff == 2:
+        rand = random.randint(1, 4)
+        if rand == 1:
+            high_difficulty = False
+        else:
+            high_difficulty = True
+    else:
+        high_difficulty = True
+
     numbers_list = list(range(1, number_of_numbers_to_play + 1))
     random.shuffle(numbers_list)
 
@@ -84,11 +95,11 @@ if __name__ == '__main__':
 
     database = []
 
-    x = input('\nИгра в арифметическую прогрессию!\n\nПетя и Вася по очереди выписывают на доску натуральные числа, '
+    x = input(f'\nИгра в арифметическую прогрессию!\n\nПетя и Вася по очереди выписывают на доску натуральные числа, '
               f'не превосходящие {number_of_numbers_to_play} (выписывать уже имеющееся число запрещено); начинает Петя.'
               f'\nЕсли после хода игрока на доске оказываются три числа, образующих арифметическую прогрессию, '
               f'этот игрок выигрывает.\n\nВыберете игрока (Петя или Вася).\n1. Петя\n2. Вася\nВедите число (1 или 2): ')
-    difficulty = input('\nВыберите сложность игры.\n1. Сложная\n2. Лёгкая\nВведите число (1 или 2): ')
+    difficulty = input('\nВыберите сложность игры.\n1. Лёгкая\n2. Средняя\n3. Сложная\nВведите число (1 или 3): ')
 
     if x == '2':
         player = Vasya()
@@ -97,13 +108,15 @@ if __name__ == '__main__':
         player = Petya()
         computer = Vasya()
 
-    if difficulty == '2':
-        difficulty = False
+    if difficulty == '1':
+        difficulty = 1
+    elif difficulty == '2':
+        difficulty = 2
     else:
-        difficulty = True
+        difficulty = 3
 
     if isinstance(computer, Petya):
-        print(f'\nХод компьютера: {choosing_a_number_by_computer(difficulty)}')
+        print(f'\n\nХод компьютера: {choosing_a_number_by_computer(difficulty)}')
 
     while True:
 
