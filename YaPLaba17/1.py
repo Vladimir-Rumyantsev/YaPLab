@@ -95,7 +95,7 @@ if __name__ == '__main__':
         difficulty = True
 
     if isinstance(computer, Petya):
-        print(f'\nХод компьютера: {choosing_a_number_by_computer(difficulty)}', end='')
+        print(f'\nХод компьютера: {choosing_a_number_by_computer(difficulty)}')
 
     while True:
 
