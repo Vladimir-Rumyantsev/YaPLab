@@ -104,7 +104,6 @@ if __name__ == '__main__':
             sys.exit()
 
         x = int(input('\nВведите ваше число: '))
-        print(x)
         while (x in database) or not (1 <= x <= 2018):
             if x in database:
                 x = int(input('Данное число уже вводилось\nВведите другое число: '))
