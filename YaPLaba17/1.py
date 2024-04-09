@@ -105,8 +105,11 @@ if __name__ == '__main__':
 
         x = int(input('\nВведите ваше число: '))
 
-        while x in database:
-            x = int(input('Данное число уже вводилось\nВведите другое число: '))
+        while (x in database) or (1 <= x <= 2018):
+            if x in database:
+                x = int(input('Данное число уже вводилось\nВведите другое число: '))
+            else:
+                x = int(input('Данное число не соответствует условию задачи\nВведите другое число: '))
 
         player.add_node(x)
 
