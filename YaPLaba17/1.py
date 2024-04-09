@@ -2,6 +2,9 @@ import random
 import sys
 
 
+number_of_numbers_to_play = 2018
+
+
 class Player:
     def __init__(self):
         self.myNodes = []
@@ -22,7 +25,7 @@ class Vasya(Player):
 
 
 def choosing_a_number_by_computer(high_difficulty=True):
-    numbers_list = list(range(1, 2019))
+    numbers_list = list(range(1, number_of_numbers_to_play + 1))
     random.shuffle(numbers_list)
 
     if not computer.myNodes:
@@ -34,14 +37,15 @@ def choosing_a_number_by_computer(high_difficulty=True):
     elif len(computer.myNodes) == 1:
         if high_difficulty and len(player.myNodes) >= 2:
             dangerous_number = (player.myNodes[-1] - player.myNodes[-2]) + player.myNodes[-1]
-            if (not (dangerous_number in database)) and (1 <= dangerous_number <= 2018):
+            if (not (dangerous_number in database)) and (1 <= dangerous_number <= number_of_numbers_to_play):
                 computer.add_node(dangerous_number)
                 return dangerous_number
 
         for i in numbers_list:
             the_future_number = ((i - computer.myNodes[-1]) + i)
 
-            if (not (i in database)) and (not (the_future_number in database)) and (1 <= the_future_number <= 2018):
+            if ((not (i in database)) and (not (the_future_number in database)) and
+                    (1 <= the_future_number <= number_of_numbers_to_play)):
                 computer.add_node(i)
                 return i
 
@@ -52,20 +56,21 @@ def choosing_a_number_by_computer(high_difficulty=True):
 
     elif len(computer.myNodes) >= 2:
         suitable_number = (computer.myNodes[-1] - computer.myNodes[-2]) + computer.myNodes[-1]
-        if (not (suitable_number in database)) and (1 <= suitable_number <= 2018):
+        if (not (suitable_number in database)) and (1 <= suitable_number <= number_of_numbers_to_play):
             computer.add_node(suitable_number)
             return suitable_number
 
         if high_difficulty and len(player.myNodes) >= 2:
             dangerous_number = (player.myNodes[-1] - player.myNodes[-2]) + player.myNodes[-1]
-            if (not (dangerous_number in database)) and (1 <= dangerous_number <= 2018):
+            if (not (dangerous_number in database)) and (1 <= dangerous_number <= number_of_numbers_to_play):
                 computer.add_node(dangerous_number)
                 return dangerous_number
 
         for i in numbers_list:
             the_future_number = ((i - computer.myNodes[-1]) + i)
 
-            if (not (i in database)) and (not (the_future_number in database)) and (1 <= the_future_number <= 2018):
+            if ((not (i in database)) and (not (the_future_number in database)) and
+                    (1 <= the_future_number <= number_of_numbers_to_play)):
                 computer.add_node(i)
                 return i
 
@@ -79,11 +84,10 @@ if __name__ == '__main__':
 
     database = []
 
-    x = input('\nИгра в арифметическую прогрессию!'
-              '\n\nПетя и Вася по очереди выписывают на доску натуральные числа, не превосходящие 2018 '
-              '(выписывать уже имеющееся число запрещено); начинает Петя.\nЕсли после хода игрока на доске оказываются '
-              'три числа, образующих арифметическую прогрессию, этот игрок выигрывает.'
-              '\n\nВыберете игрока (Петя или Вася).\n1. Петя\n2. Вася\nВедите число (1 или 2): ')
+    x = input('\nИгра в арифметическую прогрессию!\n\nПетя и Вася по очереди выписывают на доску натуральные числа, '
+              f'не превосходящие {number_of_numbers_to_play} (выписывать уже имеющееся число запрещено); начинает Петя.'
+              f'\nЕсли после хода игрока на доске оказываются три числа, образующих арифметическую прогрессию, '
+              f'этот игрок выигрывает.\n\nВыберете игрока (Петя или Вася).\n1. Петя\n2. Вася\nВедите число (1 или 2): ')
     difficulty = input('\nВыберите сложность игры.\n1. Сложная\n2. Лёгкая\nВведите число (1 или 2): ')
 
     if x == '2':
@@ -103,12 +107,13 @@ if __name__ == '__main__':
 
     while True:
 
-        if len(database) >= 2018:
+        if len(database) >= number_of_numbers_to_play:
             print('Победа компьютера через окончание доступных вам ходов!')
             sys.exit()
 
-        x = int(input('\nВведите число от 1 до 2018 (включительно), которое ещё не встречалось в игре: '))
-        while (x in database) or not (1 <= x <= 2018):
+        x = int(input(f'\nВведите число от 1 до {number_of_numbers_to_play} (включительно), '
+                      f'которое ещё не встречалось в игре: '))
+        while (x in database) or not (1 <= x <= number_of_numbers_to_play):
             if x in database:
                 x = int(input('Данное число уже вводилось\nВведите другое число: '))
             else:
@@ -121,7 +126,7 @@ if __name__ == '__main__':
             print('\nВы победили!')
             sys.exit()
 
-        if len(database) >= 2018:
+        if len(database) >= number_of_numbers_to_play:
             print('Вы победили через окончание доступных компьютеру ходов!')
             sys.exit()
 
