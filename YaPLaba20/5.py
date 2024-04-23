@@ -104,8 +104,8 @@ if __name__ == '__main__':
 
     for element in dll:
         n += 1
-        if n > (len_dll * number_of_iterator_cycles):
-            break
         line = f'{line}{element}, '
+        if n >= (len_dll * number_of_iterator_cycles):
+            break
 
     print(f'\nИтератор: [{line[:-2]}]')
