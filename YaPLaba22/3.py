@@ -15,14 +15,10 @@ def inoder(root):
 
 
 def add_a_leaf_to_the_leaves(root):
-    if root.left is not None and root.right is not None:
-        add_a_leaf_to_the_leaves(root.left)
-        add_a_leaf_to_the_leaves(root.right)
-
-    elif root.left is not None:
+    if root.left is not None:
         add_a_leaf_to_the_leaves(root.left)
 
-    elif root.right is not None:
+    if root.right is not None:
         add_a_leaf_to_the_leaves(root.right)
 
     else:
