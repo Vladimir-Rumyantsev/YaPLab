@@ -21,7 +21,7 @@ def add_a_leaf_to_the_leaves(root):
     if root.right is not None:
         add_a_leaf_to_the_leaves(root.right)
 
-    else:
+    if (root.left is None) and (root.right is None):
         if root.val % 2 == 1:
             root.left = Node(root.val)
         else:
