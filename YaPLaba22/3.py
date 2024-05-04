@@ -21,7 +21,7 @@ def add_a_leaf_to_the_leaves(root):
     if root.right is not None:
         add_a_leaf_to_the_leaves(root.right)
 
-    if root.left is None and root.right is None:
+    if (root.left is None) and (root.right is None):
         if root.val % 2 == 1:
             root.left = Node(root.val)
         else:
@@ -45,9 +45,9 @@ if __name__ == '__main__':
 
     root.left.left = Node(1)
     root.left.right = Node(3)
-    root.left.right.left = Node(4)
+    root.left.right.right = Node(4)
     root.right.left = Node(6)
-    root.right.left.left = Node(7)
+    root.right.left.right = Node(7)
     root.right.right = Node(9)
 
     print('\nСостояние дерева сейчас: ', end='')
