@@ -36,7 +36,7 @@ if __name__ == '__main__':
     #   / \     /  \
     #  1   3   6    9
     #       \   \
-    #       4   7
+    #        4   7
 
     root = Node(5)
     root.left = Node(2)
