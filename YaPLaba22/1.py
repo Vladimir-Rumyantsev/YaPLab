@@ -24,7 +24,7 @@ def insert(node, key):
 
 def read(file):
     with open(file, 'r') as f:
-        arr = f.read().split()
+        arr = list(map(int, f.read().split()))
     return arr
 
 
@@ -36,13 +36,13 @@ if __name__ == '__main__':
     #   / \     /  \
     #  1   3   6    9
     #       \   \
-    #       4   7
+    #        4   7
 
     root = None
 
     for i in read('TreeWork57_input'):
         root = insert(root, i)
 
-    print(f'\nЗначение корня дерева: {root.val}\nКонцевой обход:', end=' ')
+    print(f'\nЗначение корня дерева: {root.val}\nКонцевой обход: ', end='')
     postorder(root)
     print()
